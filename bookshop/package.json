@@ -7,7 +7,8 @@
     "dependencies": {
         "@sap/cds": "^3.18.3",
         "express": "^4.17.1",
-        "hdb": "^0.17.1"
+        "hdb": "^0.17.1",
+        "mbt": "^0.3.5"
     },
     "engines": {
         "node": "^8.9"
@@ -15,7 +16,9 @@
     "scripts": {
         "build": "cds build/all --clean",
         "deploy": "cds deploy",
-        "start": "cds run"
+        "start": "cds run",
+        "build:mta": "cds build/all && mbt build -p=cf",
+        "deploy:cf": "npm run build:mta && cf deploy mta_archives/${npm_package_name}_${npm_package_version}.mtar"
     },
     "cds": {
         "requires": {

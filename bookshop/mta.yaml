@@ -22,8 +22,24 @@ modules:
           url: ${default-url}
     requires:
       - name: bookshop-db-hdi-container
+  - name: bookshop-ui
+    type: nodejs
+    path: app
+    parameters:
+      memory: 256M
+      disk-quota: 256M
+    requires:
+      - name: srv_api
+        group: destinations
+        properties: 
+          forwardAuthToken: true
+          strictSSL: true
+          name: srv_api
+          url: ~{url}
 resources:
   - name: bookshop-db-hdi-container
     type: com.sap.xs.hdi-container
     properties:
       hdi-container-name: ${service-name}
+    parameters:
+      service: hanatrial
