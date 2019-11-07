@@ -1,7 +1,5 @@
 .che/
 .gen/
-gen/
-mta_archives/
 node_modules/
 target/
 
